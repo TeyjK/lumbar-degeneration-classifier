@@ -1,0 +1,151 @@
+body {
+  background: #f6f8fa;
+  font-family: "Inter", system-ui, sans-serif;
+  color: #1a1a1a;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.page {
+  width: 1100px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 2rem 2.5rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  color: #003f7d;
+  margin: 0;
+}
+
+.subtitle {
+  color: #5c6b7a;
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
+}
+
+.main {
+  display: flex;
+  gap: 2rem;
+}
+
+.left-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right-panel {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.image-container {
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+  background: #eef2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+#preview-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: none;
+}
+
+#placeholder {
+  color: #8a8a8a;
+  font-size: 0.95rem;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+input[type="file"],
+select,
+button {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccd3da;
+  font-size: 0.9rem;
+}
+
+button {
+  background: #0069d9;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #0055b3;
+}
+
+.model-info {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.result-box {
+  background: #f2f4f7;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  margin: 0.6rem 0;
+  gap: 0.5rem;
+}
+
+.bar-bg {
+  flex: 1;
+  height: 10px;
+  background: #dce3ea;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #2b8cd8;
+}
+
+.label {
+  width: 110px;
+  font-weight: 500;
+}
+
+.value {
+  width: 50px;
+  text-align: right;
+}
+
+.placeholder {
+  color: #8a8a8a;
+  text-align: center;
+}

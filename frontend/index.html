@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lumbar Degeneration Classifier</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/frontend/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <h1>Lumbar Degeneration Classifier</h1>
+      <p class="subtitle">Clinical MRI Analysis Interface</p>
+    </div>
+
+    <div class="main">
+      <div class="left-panel">
+        <div class="image-container">
+          <img id="preview-img" alt="MRI preview" />
+          <div id="placeholder"><p>Upload MRI Image</p></div>
+        </div>
+
+        <form id="upload-form">
+          <input type="file" id="file" accept="image/*" required />
+          <select id="model" name="model_type">
+            <option>Sagittal T1</option>
+            <option>Axial T2</option>
+            <option>Sagittal T2/STIR</option>
+          </select>
+          <button type="submit">Run Prediction</button>
+        </form>
+      </div>
+
+      <div class="right-panel">
+        <div class="model-info">
+          <p><strong>Selected Model:</strong> <span id="model-name">—</span></p>
+        </div>
+
+        <div id="result" class="result-box">
+          <p class="placeholder">Results will appear here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById("file");
+    const previewImg = document.getElementById("preview-img");
+    const placeholder = document.getElementById("placeholder");
+    const modelSelect = document.getElementById("model");
+    const modelName = document.getElementById("model-name");
+    const form = document.getElementById("upload-form");
+    const resultBox = document.getElementById("result");
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+      if (file) {
+        previewImg.src = URL.createObjectURL(file);
+        previewImg.style.display = "block";
+        placeholder.style.display = "none";
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const file = fileInput.files[0];
+      const model = modelSelect.value;
+      modelName.textContent = model;
+
+      const data = new FormData();
+      data.append("file", file);
+      data.append("model_type", model);
+
+      resultBox.innerHTML = "<p>Running inference...</p>";
+
+      const res = await fetch("/predict", { method: "POST", body: data });
+      const json = await res.json();
+      const probs = json.probabilities;
+
+      resultBox.innerHTML = Object.entries(probs)
+        .map(([label, prob]) => {
+          const pct = (prob * 100).toFixed(1);
+          return `
+            <div class="bar">
+              <span class="label">${label}</span>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width:${pct}%"></div>
+              </div>
+              <span class="value">${pct}%</span>
+            </div>`;
+        })
+        .join("");
+    });
+  </script>
+</body>
+</html>
