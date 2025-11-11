@@ -5,6 +5,10 @@ Deployed as an interactive FastAPI web application for clinical exploration and 
 
 **Live Demo:** [https://lumbar-degeneration-classifier.onrender.com](https://lumbar-degeneration-classifier.onrender.com)
 
+**Note:** This web app is hosted on Render’s free tier.  
+The site may take up to 30 seconds to load if it has been inactive for a while, as the server spins back up.  
+Once active, all features will function normally.
+
 ---
 
 ## Overview
