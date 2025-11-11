@@ -1,24 +1,31 @@
 # Lumbar Degeneration Classifier
 
-Deep learning system to classify lumbar spine degeneration severity from MRI scans (RSNA 2024).
+A production-ready deep learning system for classifying lumbar spine degeneration severity from MRI scans (RSNA 2024).  
+Deployed as an interactive FastAPI web application for clinical exploration and model demonstration.
+
+**Live Demo:** [https://lumbar-degeneration-classifier.onrender.com](https://lumbar-degeneration-classifier.onrender.com)
+
+---
 
 ## Overview
 
-- Trained and tested deep learning models (**CNN, EfficientNetV2, ConvNeXt**) on 147k+ MRI slices representing ~2,000 patients.
-- Multi-class classification across 3 spinal regions and 5 lumbar levels.
-- Achieved **0.95 micro-average AUC** and **87% classification accuracy** on internal validation.
+This project implements a multi-class deep learning model to assess lumbar spine degeneration across three MRI sequences and multiple spinal regions.  
+The trained models were deployed using FastAPI with a lightweight web interface designed for clinician usability.
+
+**Highlights**
+- Trained convolutional architectures (**CNN, EfficientNetV2, ConvNeXt**) on **147,000+ MRI slices** from ~2,000 patients.
+- Classified degeneration severity (Normal/Mild, Moderate, Severe) for **three MRI sequences**: Sagittal T1, Sagittal T2/STIR, and Axial T2.
+- Achieved **0.95 micro-average AUC** and **87% classification accuracy** on validation data.
+- Deployed via **Render** as a FastAPI web application with real-time inference and visualization.
+
+---
 
 ## Tech Stack
 
-- **Backend**: Python, FastAPI, PyTorch
-- **ML**: EfficientNetV2, ConvNeXt, Torchvision
-- **Data**: DICOM via pydicom
-- **Frontend**: HTML/CSS + vanilla JS (file upload, JSON results)
-
-## How to run (local)
-
-```bash
-python -m venv .venv
-source .venv/bin/activate  # or .venv\Scripts\activate on Windows
-pip install -r requirements.txt
-uvicorn api.main:app --reload
+| Layer | Technologies |
+|-------|---------------|
+| **Backend** | FastAPI, Uvicorn, Python |
+| **Machine Learning** | PyTorch, Torchvision |
+| **Data Handling** | NumPy, Pandas, PyDICOM |
+| **Frontend** | HTML, CSS, Vanilla JavaScript |
+| **Deployment** | Render (CPU environment) |
